@@ -1,0 +1,66 @@
+<div class="col-lg-8" style="margin: auto;">
+
+    <h1  class="title-head">{{titulo}}</h1>
+
+    <div style="font-weight: 600; margin: 20px;">
+        <tr>
+            <td>
+                <span>
+                    Hola, {{identidad?.name}} en esta sección podrás editar la canción seleccionada, rellene los campos y una vez
+                    terminado, dale click al botón denominado 'Editar Canción'
+                </span>
+            </td>
+        </tr>
+    </div>
+
+    <div *ngIf="alertSong">
+        <div class="alert alert-info" role="alert">
+            {{alertSong}}
+        </div>
+    </div>
+
+    <form id="addAlbum-form" #registerForm="ngForm"  (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <p>
+                <label>Número de canción</label>
+                <input type="number" #number="ngModel" name="number" [(ngModel)]="song.number" class="form-control"
+                    required />
+                <span *ngIf="!number.valid && number.touched">El número es obligatorio</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Nombre</label>
+                <input type="text" #name="ngModel" name="name" [(ngModel)]="song.name" class="form-control" required />
+                <span *ngIf="!name.valid && name.touched">El nombre es obligatorio</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Duración</label>
+                <input type="text" #duration="ngModel" name="duration" [(ngModel)]="song.duration" class="form-control" required />
+                <span *ngIf="!duration.valid && duration.touched">La duración es obligatoria</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <div *ngIf="song.file && song.file != 'null'">
+                <audio controls>
+                    <source src="{{url+'get-file-song/'+song.file}}" type="audio/mpeg" />
+
+                </audio>
+            </div>
+            <p>
+                <label>Subir canción</label>
+                <input type="file" #fileInput name="file" class="form-control" placeholder="Sube tu canción"
+                    (change)="fileChangeEvent($event)" />
+            </p>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" value="Editar Canción" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,68 @@
+<div class="col-lg-8" style="margin: auto;">
+
+    <h1  class="title-head">{{titulo}}</h1>
+
+    <div class="artist-box " *ngIf="album.title !=''" style="background: #333333; border-radius: 30px; margin-top: 20px;padding: 20px;">
+        <div id="artist-head-card" class="row" style="display: flex;margin: 20px;background-color: black;padding: 20px;border-radius: 20px;border: 1px solid white;color: white;">
+            <div class="col-lg-4">
+                <img src="{{url + 'get-image-album/' + album.image}}" class="card-img-top img-fluid"
+                    style="width: 80%; height: auto;border-radius: 20px;" />
+            </div>
+            <div class="data col-lg-6" style="margin: auto;">
+                <h3 class="title-artist-detail">{{album.title}}</h3>
+                <p class="description">{{album.description}}</p>
+                <h2>{{album.year}}</h2>
+            </div>
+        </div>
+        
+    </div>
+
+    <div style="font-weight: 600; margin: 20px;">
+        <tr>
+            <td>
+                <span>
+                    Hola, {{identidad?.name}} en esta sección podrás añadir una nueva Canción, rellene los campos y una vez
+                    terminado, dale click al botón denominado 'Añadir Canción'
+                </span>
+            </td>
+        </tr>
+    </div>
+
+    <div *ngIf="alertSong">
+        <div class="alert alert-info" role="alert">
+            {{alertSong}}
+        </div>
+    </div>
+
+    <form id="addAlbum-form" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <p>
+                <label>Número de canción</label>
+                <input type="number" #number="ngModel" name="number" [(ngModel)]="song.number" class="form-control"
+                    required />
+                <span *ngIf="!number.valid && number.touched">El número es obligatorio</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Nombre</label>
+                <input type="text" #name="ngModel" name="name" [(ngModel)]="song.name" class="form-control" required />
+                <span *ngIf="!name.valid && name.touched">El nombre es obligatorio</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Duración</label>
+                <input type="text" #duration="ngModel" name="duration" [(ngModel)]="song.duration" class="form-control" required />
+                <span *ngIf="!duration.valid && duration.touched">La duración es obligatoria</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" value="Añadir Canción" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

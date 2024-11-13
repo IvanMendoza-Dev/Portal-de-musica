@@ -1,0 +1,71 @@
+<div class="head-page">
+    <h1 class="title-head">{{title}}</h1>
+</div>
+
+<div class="clearfix"></div>
+
+<div *ngIf="identity" style="background: #333333; border-radius: 30px; margin-top: 20px;">
+    <div class="row" style="display: flex;margin: auto;justify-content: center;">
+        <div style="width: 18rem; margin: 20px;border: 1px solid white; border-radius: 20px;"
+            *ngFor="let user of users">
+            <img src="{{url + 'get-image-user/' + user.image}}" class="card-img-top img-fluid"
+                style="width: 100%; height: auto;border-top-left-radius: 20px;border-top-right-radius: 20px;" />
+            <div class="card-body"
+                style="background: black; color: white; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; ">
+                <h5 class="card-title">{{user.name}}</h5>
+                <p class="card-text">{{user.description}}</p>
+                <a [routerLink]="['/user', user._id]" class="btn btn-dark" style="margin-bottom: 10px;">Ver Detalles</a>
+
+                <div class="row">
+                    <div *ngIf="identidad?.role == 'ROLE_ADMIN'" class="col-lg-4">
+                        <a [routerLink]="['/edit-artist', user._id]" class="btn btn-warning">Editar</a>
+                    </div>
+                    <div *ngIf="identidad?.role == 'ROLE_ADMIN'" class="col-lg-4">
+                        <a class="btn btn-danger" data-toggle="modal"
+                            data-target="#exampleModal" (click)="onDeleteConfirm(user._id)">Eliminar</a>
+                    </div>
+                </div>
+            
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="confirmado == user._id" style="color: black;">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Artista</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿ Estás seguro que desea eliminar el artista {{user.name}} ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <a class="btn btn-primary" data-dismiss="modal" (click)="onDeleteUser(user._id)">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <nav aria-label="Page navigation example"
+        style="    display: flex; margin: auto; justify-content: center; font-weight: 600; font-size: 30px;">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" [routerLink]="['/users', prev_page]" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" [routerLink]="['/users', next_page]" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+

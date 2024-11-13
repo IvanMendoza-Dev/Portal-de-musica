@@ -1,0 +1,73 @@
+<div class="col-lg-12" style="margin: auto;" *ngIf="identidad?.role == 'ROLE_USER' && identidad?._id != user._id">
+    <h1 class="title-head">No tienes permiso para acceder aquí.</h1>
+</div>
+
+<div class="col-lg-8" style="margin: auto;" *ngIf="identidad?.role == 'ROLE_ADMIN' || identidad?._id == user._id">
+
+    <h1  class="title-head">{{titulo}}</h1>
+
+
+    <div style="font-weight: 600; margin: 20px;">
+        <tr>
+            <td>
+                <span class="image_for_edit" *ngIf="album.image && album.image != 'null'">
+                    <img src="{{url+ 'get-image-album/' + album.image}}"
+                        style="width: 70px; height: 70px; margin: 20px; border-radius: 15px;" />
+                </span>
+            </td>
+            <td>
+                <span>
+                    Hola, {{identidad?.name}} en esta sección podrás editar el Album, rellene los campos y una vez
+                    terminado, dale click al botón denominado 'Añadir Album'
+                </span>
+            </td>
+        </tr>
+    </div>
+
+    <div *ngIf="alertAlbum">
+        <div class="alert alert-info" role="alert">
+            {{alertAlbum}}
+        </div>
+    </div>
+
+    <form id="addAlbum-form" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <p>
+                <label>Título</label>
+                <input type="text" #title="ngModel" name="title" [(ngModel)]="album.title" class="form-control" required />
+                <span *ngIf="!title.valid && title.touched">El título es obligatorio</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Descripción</label>
+                <textarea #description="ngModel" name="description" [(ngModel)]="album.description"
+                    class="form-control" required></textarea>
+                <span *ngIf="!description.valid && description.touched">La descripcion es obligatoria</span>
+
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Año</label>
+                <input type="number" #year="ngModel" name="year" [(ngModel)]="album.year" class="form-control"
+                    required />
+                <span *ngIf="!year.valid && year.touched">El año es obligatorio</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <p>
+                <label>Subir imagen</label>
+                <input type="file" #imageInput name="image" class="form-control" placeholder="Sube tu imagen"
+                    (change)="fileChangeEvent($event)" />
+            </p>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" value="Añadir Album" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

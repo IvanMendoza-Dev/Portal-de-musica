@@ -1,0 +1,175 @@
+
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #F31B36;
+	font-size: 18px;
+}
+
+.btn-register {
+	background-color: #F31B36;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #F31B36;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #F31B36;
+	border-color: #F31B36;
+}
+
+.bg-light{
+    background-color: #333333 !important;
+}
+.navbar-light .navbar-brand{
+    color: white;
+}
+
+.navbar-light .navbar-brand:hover{
+    color: #BDBDBD;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #BDBDBD;
+}
+
+.navbar-light .navbar-nav .active>.nav-link{
+    color: #BDBDBD;
+}
+
+.btn-primary {
+    color: black;
+    background-color: #F31B36;
+    border-color: #F31B36;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    color: white;
+    background-color: black;
+    border-color: black;
+    font-weight: 500;
+}
+
+.btn-dark{
+	background-color: white;
+	border-color: white;
+    color: black;
+    font-weight: 500;
+}
+
+.btn-dark:hover{
+	background-color: #333333;
+	border-color: #333333;
+    color: white;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+    color: #BDBDBD;
+	border-bottom: 2px solid #F31B36;
+	padding-bottom: 2px;
+}
+
+footer {
+	background-color: #333333;
+	position: fixed; /* Cambiar de absolute a fixed */
+	bottom: 0;
+	width: 100%;
+	color: white;
+}
+
+.contenedor{
+	margin-bottom: 200px;
+}
+
+  .footerLink{
+	color: #F31B36;
+	font-weight: 600;
+  }
+
+  .footerLink:hover{
+	color: white;
+	font-weight: 600;
+
+  }
+  
+  .btnSocial{
+    height: 2.1rem;
+    width: 2.7rem;
+  }
+
+  .page-link{
+	color: black;
+  }
+
+  .title-head{
+	justify-content: center;
+    display: flex;
+    margin: 20px;
+    font-family: fantasy;
+	font-size: 5rem;
+  }
+
+  .title-artist-detail{
+	
+    font-family: fantasy;
+	font-size: 5rem;
+  }
+
+  /* PLAYER */
+  .player{
+	background-color: #333333;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	margin-left: -15px;
+	border-left: 1px solid #444;
+	padding-bottom: 25px;
+	display: flex;
+    align-items: center;
+  }
+
+  .player .album-image{
+	float: left;
+	height: 105px;
+	padding: 10px;
+	overflow: hidden;
+  }
+
+  .player .album-image img{
+	height: 100%;
+	border-radius: 15px;
+  }
+
+  .player .audio-file{
+	width: 85%;
+	color: white;
+	font-weight: 600;
+	height: 40px;
+	margin-top: 10px;
+	margin-left: 10px;
+	float: left;
+  }
+
+  .player audio{
+	width: 100%;
+	height: 40px;
+  }

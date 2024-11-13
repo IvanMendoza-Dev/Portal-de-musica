@@ -1,0 +1,93 @@
+<div class="artist-box " *ngIf="album.title !=''"
+    style="background: #333333; border-radius: 30px; margin-top: 20px;padding: 20px;">
+    <div id="artist-head-card" class="row"
+        style="display: flex;margin: 20px;background-color: black;padding: 20px;border-radius: 20px;border: 1px solid white;color: white;">
+        <div class="col-lg-2">
+            <img src="{{url + 'get-image-album/' + album.image}}" class="card-img-top img-fluid"
+                style="width: 80%; height: auto;border-radius: 20px;" />
+        </div>
+        <div class="data col-lg-4">
+            <h1 class="title-artist-detail">{{album.title}}</h1>
+            <p class="description">{{album.description}}</p>
+            <h2>{{album.year}}</h2>
+
+            <a *ngIf="identidad?.role == 'ROLE_ADMIN' || identidad?._id == user._id" class="btn btn-dark"
+                [routerLink]="['/add-song', album._id]">Añadir Cancion</a>
+        </div>
+    </div>
+
+    <table class="table" style="border: 1px solid white;">
+        <thead style="background-color: white;">
+            <tr>
+                <th></th>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Duración</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="background-color: black;color: white;font-weight: 600;">
+            <tr *ngFor="let song of songs" >
+                <td>
+                    <a class="btn btn-success" style="border-radius: 20px;" *ngIf="song.file && song.file != 'null'"  (click)="startPlayer(song)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-play-fill" viewBox="0 0 16 16" style="display: flex;">
+                            <path
+                                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                        </svg>
+                    </a>
+                </td>
+                <td scope="row">{{song.number}}</td>
+                <td>{{song.name}}</td>
+                <td>{{song.duration}}</td>
+                <td>
+                    <span *ngIf="identidad?.role == 'ROLE_ADMIN' || identidad?._id == user._id" class="col-lg-4">
+                        <a [routerLink]="['/edit-song', song._id]" class="btn btn-warning">Editar</a>
+                    </span>
+                    <span *ngIf="identidad?.role == 'ROLE_ADMIN' || identidad?._id == user._id" class="col-lg-4">
+                        <a class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
+                            (click)="onDeleteConfirm(song._id)">Eliminar</a>
+                    </span>                   
+                </td>
+                <td>
+                    <span>
+                        <a class="btn btn-dark" style="color: black;" (click)="addListRep(song)"> Añadir a la lista de Reproducción</a>
+                    </span>
+                </td>
+
+
+
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="confirmado == song._id"
+                    style="color: black;">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Canción</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿ Estás seguro que desea eliminar la canción {{song.name}} ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <a class="btn btn-primary" data-dismiss="modal"
+                                    (click)="onDeleteSong(song._id)">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
